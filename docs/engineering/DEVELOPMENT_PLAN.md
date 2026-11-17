@@ -1,4 +1,4 @@
-# WeavePivot — Development Plan V1.0
+# WeavePivot — Development Plan V1.1
 > 2026-11-17 | Status: proposed, milestones are gates not promises
 
 ## 1. Objective
@@ -44,11 +44,11 @@ Existing: product vision, PRD, feature matrix, design system, island spec, inter
 **Exit:** all V0.1 acceptance tests pass and known limitations are documented.
 
 ### M6 — V0.2 expansion (separate milestone)
-- ZIP extraction and preview, image conversion, Dock window preview only if PoC feasible.
+- User-facing Flow presets, ZIP extraction and preview, image conversion; Dock window preview only if PoC feasible.
 **Exit:** no destructive extraction vulnerabilities; permissions and fallbacks verified.
 
 ### M7 — V0.3 Flow
-- Preset action sequences upgraded to configurable workflows, task history, retry and cancellation.
+- User-facing preset sequences introduced in V0.2 are upgraded to configurable workflows, task history, retry and cancellation.
 **Exit:** safe repeatability and deterministic failure handling.
 
 ## 4. Dependencies
@@ -93,3 +93,24 @@ Read AGENTS and relevant docs; propose smallest vertical slice; identify public 
 
 ## 11. Release checklist
 Version/changelog; license and privacy policy; permission rationale; signed/notarized build if applicable; install/uninstall/cleanup; no debug entitlements; crash reporting opt-in if used; rollback and data migration plan.
+
+## 12. V1.1 milestone acceptance and requirements
+| Milestone | Deliverables | Blocking gate |
+|---|---|---|
+| M0 | runnable native shell, CI, ADR-007/008 initial decision | real macOS smoke build |
+| M1 | POC-NOTCH/CLIP/CAP reports | pass or approved fallback |
+| M2 | Island coordinator/state machine, tokens, keyboard/VoiceOver | ISL-01/02 tests |
+| M3 | clipboard store, pause/clear/exclusion best effort | CLIP-01/02 + DATA-01 |
+| M4 | screenshot + Desk export | CAP-01 + DESK-01 |
+| M5 | V0.1 beta, signed test build, regressions | all Must requirements |
+| M6 | V0.2 presets, ZIP, conversion; Dock conditional | scoped V0.2 acceptance |
+| M7 | V0.3 configurable workflows | cancellation/retry safety |
+
+### Change-management rule
+A feature moves versions only with synchronized changes to FEATURE_MATRIX, PRD, PRODUCT_VISION, TEST_PLAN, this plan and ADR-005. Internal Task Engine in V0.1 is **not** a user-visible Flow preset. Accessibility, privacy, error recovery and measured performance are required from M2–M5, not deferred to V1.0.
+
+### Execution order clarification
+M0 may include provisional deployment target for a disposable PoC; production target is frozen after M1. M2 and M3 may run in parallel only when domain interfaces and Island contracts are stable. Each issue should reference one or more requirement IDs and linked test IDs.
+
+### Effort disclaimer
+Developer-day estimates are rough planning assumptions, not commitments. Re-estimate after hardware feasibility results and account for localization, QA, signing, notarization and distribution.
