@@ -14,7 +14,7 @@ Single click selects, Cmd-click toggles, Shift-click selects range in ordered vi
 Observe changeCount with adaptive low-cost polling or appropriate system mechanism. Show origin/time/type when reliably available; never invent app attribution. Support pin, delete, copy again, search, pause capture, exclude apps, clear all. Sensitive content safeguards are best-effort and clearly disclosed. No automatic paste into another app without explicit user action and necessary permission.
 
 ## 5. Screenshot
-User initiates region/window/full-screen capture where supported. Escape cancels; screenshot goes to preview with Copy, Save, Add to Desk. OCR via Vision only after user action or opted-in workflow. Permission denial shows instructions and Retry; never repeatedly prompt without context. Respect scaled coordinates and color profiles.
+V0.1 Must: user-initiated region capture. Window/full-screen capture are future enhancements only where supported. Escape cancels; screenshot goes to preview with Copy, Save, Add to Desk. OCR via Vision only after user action or opted-in workflow. Permission denial shows instructions and Retry; never repeatedly prompt without context. Respect scaled coordinates and color profiles.
 
 ## 6. Desk
 Asset model includes stable ID, type, creation time, provenance when known, preview metadata, retention policy, file bookmark/reference and processing status. Views: grid/list, category filters, search, multi-select, details, batch action. Empty, loading, unavailable file, corrupted preview and no results are distinct states. Destructive actions require confirmation or Undo.
