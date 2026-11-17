@@ -30,7 +30,7 @@ Do not assume missing documents exist; note the gap and proceed only within appr
 For each task: (1) restate goal and affected files; (2) identify permissions/API risks; (3) implement smallest vertical slice; (4) add tests; (5) run build/lint/tests when environment supports them; (6) report exact commands, results, limitations and remaining risks. If Xcode/macOS runtime unavailable, say so explicitly and do not claim a successful native build.
 
 ## Priority
-V0.1: app shell, Island PoC, clipboard, capture, Desk integration. V0.2: archive and Dock preview only after feasibility tests. V0.3: configurable Flow. Avoid scope creep.
+V0.1: app shell, Island PoC, clipboard, capture, Desk integration. V0.2: user-facing Flow presets, archive/conversion and Dock preview only after feasibility tests. V0.3: configurable Flow. Avoid scope creep.
 
 ## UX fidelity
 Concept posters are inspiration, not production geometry. Follow design tokens and annotated independent prototypes. Default notch state visually merges with system black notch; no always-on neon capsule. Non-notch fallback required. All animations interruptible and Reduce Motion-aware.
@@ -43,3 +43,11 @@ Code compiles on supported macOS target, tests pass where available, permissions
 
 ## Stop and ask
 When API capability is uncertain, permissions cannot be justified, requirements conflict, implementation would replace system UI, or a change affects architecture/privacy/data retention, stop and request a decision rather than guessing.
+
+## V1.1 source-of-truth and escalation
+Safety, user privacy and public macOS API limits override all specifications. Accepted ADRs govern decisions; FEATURE_MATRIX governs version/tier, PRD behavior, INTERACTION_SPEC and WEAVE_ISLAND_SPEC interaction, DESIGN_SYSTEM visuals, ARCHITECTURE implementation. TEST_PLAN governs evidence. This file governs AI agent behavior; AI_DEVELOPMENT_GUIDE provides prompts and workflow.
+
+If a conflict remains, **stop the affected task**, quote conflicting sections and request a decision. Never treat a Could/Should feature as a V0.1 release blocker. V0.1 internal task executor does not imply user-facing Flow presets. Do not claim a native build or hardware PoC without actual macOS evidence.
+
+## Mandatory task report
+Every implementation PR must list requirement IDs, changed files, public APIs, permissions, actual build/test commands and results, hardware/OS where tested, accessibility checks, data-handling effects, known limitations and rollback. Unexecuted tests are Not run.
