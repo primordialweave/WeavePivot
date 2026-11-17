@@ -121,3 +121,6 @@ Compare SwiftData/Core Data/SQLite against migration, full-text search, binary c
 
 ## 16. Architecture release gates
 No feature view performs synchronous disk I/O, screen capture or pasteboard polling. Services must expose cancellation, typed errors, authorization status and ownership semantics. Every platform-specific adapter needs a fake implementation for unit tests. Freeze deployment target and distribution before release build configuration, not necessarily before isolated PoCs.
+
+## 17. V1.2 canonical repository contract
+The authoritative target folder layout, module ownership, creation policy and PoC promotion process are defined in [REPOSITORY_STRUCTURE.md](REPOSITORY_STRUCTURE.md). The section 4 tree above is an abbreviated illustration; if the two disagree, follow the canonical structure document and log a decision. No directory is assumed to exist until created in an actual commit.
