@@ -99,3 +99,6 @@ Before coding, output a requirements checklist with IDs and Must/Should/Could/Ou
 
 ## 15. PR evidence template
 Include: objective and linked Issue; changed files; requirement IDs; actual build command/output; unit/integration/manual test IDs and statuses; tested hardware/OS; accessibility; permissions; screenshots from running app if applicable; known limitations; rollback; ADR changes. Mark any unexecuted test **Not run**, not Passed.
+
+## 16. V1.2 required project scaffolding references
+Before creating folders, consult [REPOSITORY_STRUCTURE.md](REPOSITORY_STRUCTURE.md). Before implementing UI, consult [ASSET_INVENTORY.md](../design/ASSET_INVENTORY.md). Before starting a milestone, consult [EXECUTION_CHECKLIST.md](EXECUTION_CHECKLIST.md). In every task report, distinguish directories proposed from directories actually created, and assets planned from assets approved. Do not start M2 without a reviewed POC-NOTCH outcome or explicit fallback decision.
