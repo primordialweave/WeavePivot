@@ -57,3 +57,6 @@ An asset is complete only when the editable master, export, naming, provenance/l
 
 ## 12. V1.1 asset acceptance and provenance
 Asset inventory is a **planned deliverable**, not evidence of generated or approved imagery. Each approved source must have an editable master, license/provenance, theme, intended UI state, dimensions, exported variants and review record. For prototypes, add viewport points, scale factor, annotated safe areas, focus order, reduced-motion alternative and associated requirement IDs. Runtime UI is built from native controls, not a flattened concept image. Prefer a single source of truth for colors and motion in DESIGN_SYSTEM.
+
+## 13. V1.2 prototype-to-implementation mapping
+See [ASSET_INVENTORY.md](ASSET_INVENTORY.md) for planned prototype IDs, required UI states, independent asset list, development milestone and approval gates. Inventory entries do not mean assets already exist. Native controls and code-driven motion remain implementation responsibilities; only approved exports enter Assets.xcassets.
