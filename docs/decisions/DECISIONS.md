@@ -32,10 +32,10 @@ Proposed = needs explicit decision or PoC; Accepted = approved direction; Supers
 - Constraints: no private API, no physical-notch modification, no menu bar occlusion.
 - Validation: POC-NOTCH on real hardware.
 
-## ADR-005 — V0.1 scope
+## ADR-005 — Version scope V1.1
 - Date: 2026-11-17
 - Status: Accepted for planning
-- Decision: Island, clipboard history, screenshot, Desk closed loop. OCR/preset actions optional enhancement. Archive/Dock previews deferred to V0.2; configurable Flow to V0.3.
+- Decision: V0.1 Island, clipboard text/image history, region screenshot, Desk closed loop and foundational privacy/accessibility. OCR/basic annotation optional, **user-facing Flow presets deferred to V0.2**, configurable Flow to V0.3. Archive/conversion V0.2; Dock preview conditional on PoC.
 - Rationale: deliver a coherent vertical slice before breadth.
 
 ## ADR-006 — Local-first privacy
@@ -87,3 +87,24 @@ Proposed = needs explicit decision or PoC; Accepted = approved direction; Supers
 
 ## Change policy
 Never silently rewrite an accepted decision. Add a new ADR referencing the prior one and update affected PRD, Feature Matrix, Design System and tests. Keep implementation-specific details out of product-vision statements.
+
+## ADR-011 — Documentation precedence and conflict escalation
+- Date: 2026-11-17
+- Status: Accepted for V1.1 baseline
+- Decision: Platform safety/privacy > accepted ADRs > FEATURE_MATRIX (version/tier) and PRD (behavior) > INTERACTION_SPEC/WEAVE_ISLAND_SPEC > DESIGN_SYSTEM > ARCHITECTURE implementation details. AGENTS governs AI behavior; AI_DEVELOPMENT_GUIDE governs procedure.
+- Consequence: Equal-authority conflicts require maintainer decision; agents may not silently resolve them.
+
+## ADR-012 — Canonical Island motion and task decoupling
+- Date: 2026-11-17
+- Status: Accepted as design baseline, timings provisional pending hardware validation
+- Decision: DESIGN_SYSTEM defines hoverWake 150ms, compactExpand 220ms, fullExpand 280ms, collapse 180ms and completionHold 600ms. Task execution state remains independent of Island presentation state.
+- Consequence: Esc closes panel without cancelling tasks; drag suppresses timeout; task completion cannot steal focus.
+
+## ADR-013 — Clipboard provenance and data ownership
+- Date: 2026-11-17
+- Status: Accepted as privacy principle; default retention unresolved under ADR-009
+- Decision: Source application attribution and password detection are best effort; do not promise absolute app exclusion. Offer reliable pause/manual capture fallback. Clear All removes owned metadata/cache but never deletes externally referenced originals.
+- Validation: POC-CLIP plus deletion and privacy tests.
+
+## V1.1 outstanding release blockers
+ADR-007 minimum macOS, ADR-008 distribution/sandbox, ADR-009 retention defaults, and PoC-backed notch fallback decision must be closed before final release configuration. Their unresolved status does **not** prevent isolated PoC implementation.
