@@ -29,3 +29,10 @@ Read AGENTS.md and the linked documents before coding. Accepted ADRs govern deci
 
 ## Next milestone
 Create POC-NOTCH, POC-CLIP and POC-CAP as isolated native macOS experiments; record evidence in docs/testing/reports. No generated UI image is a substitute for a running build.
+
+## V1.2 execution references
+- [Canonical repository structure](docs/engineering/REPOSITORY_STRUCTURE.md)
+- [Prototype and asset inventory](docs/design/ASSET_INVENTORY.md)
+- [Milestone execution checklist](docs/engineering/EXECUTION_CHECKLIST.md)
+
+These documents specify planned structure and outputs; they do not imply that source directories, assets or runnable macOS PoCs already exist.
