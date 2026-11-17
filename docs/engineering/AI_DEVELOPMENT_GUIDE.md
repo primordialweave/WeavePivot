@@ -1,4 +1,4 @@
-# WeavePivot — AI Development Guide V1.0
+# WeavePivot — AI Development Guide V1.1
 
 > Date: 2026-11-17 | Companion to root `AGENTS.md`.
 
@@ -24,7 +24,7 @@ Each task description must include: objective; scope and explicit non-goals; inp
 Never claim successful macOS compilation when running on a non-macOS host.
 
 ## 5. Implementation sequence
-Phase A: app shell, menu bar, settings, test target and CI. Phase B: isolated notch window PoC and state machine. Phase C: clipboard observer and privacy/retention. Phase D: Asset model and Desk storage. Phase E: screenshot capture and Desk export. Phase F: accessibility, performance, packaging and beta. Do not build Dock previews or arbitrary Flow editor before V0.1 gates.
+Phase A: app shell, menu bar, settings, test target and CI. Phase B: isolated notch window PoC and state machine. Phase C: clipboard observer and privacy/retention. Phase D: Asset model and Desk storage. Phase E: screenshot capture and Desk export. Phase F: accessibility, performance, packaging and beta. User-facing Flow presets start in V0.2, configurable Flow in V0.3. Do not build Dock previews or arbitrary Flow editor before V0.1 gates.
 
 ## 6. UI fidelity rules
 - Use native components and semantic design tokens; do not embed complete screenshot as a background.
@@ -84,3 +84,18 @@ One issue per small unit, focused branch, reviewable PR and clear commit history
 
 ## 12. First action for a new agent
 Read docs, inspect the repo, identify unresolved ADR-007/008/009, and propose POC-NOTCH with a real hardware test plan. Begin with engineering validation, not a new visual concept poster.
+
+## 13. V1.1 source-of-truth and conflict protocol
+1. Public API constraints, privacy and user safety are non-negotiable.
+2. Accepted ADRs control explicit decisions.
+3. FEATURE_MATRIX controls version and delivery tier; PRD controls feature behavior and acceptance.
+4. INTERACTION_SPEC and WEAVE_ISLAND_SPEC control interaction states; DESIGN_SYSTEM controls visual tokens.
+5. ARCHITECTURE controls implementation boundaries; TEST_PLAN controls execution evidence.
+6. AGENTS.md is the coding-agent behavioral contract; this guide supplies procedures and prompt templates.
+7. If documents disagree, stop affected work, report exact file/section conflicts, propose a change set, and obtain maintainer approval; never silently choose one.
+
+## 14. Prompt hardening and scope checks
+Before coding, output a requirements checklist with IDs and Must/Should/Could/Out, API availability assumptions, permission impacts and test IDs. Reject V0.1 tasks that implement user-visible Flow presets or Dock interception unless the roadmap is formally revised. Always distinguish prototype image, runnable UI and tested hardware behavior.
+
+## 15. PR evidence template
+Include: objective and linked Issue; changed files; requirement IDs; actual build command/output; unit/integration/manual test IDs and statuses; tested hardware/OS; accessibility; permissions; screenshots from running app if applicable; known limitations; rollback; ADR changes. Mark any unexecuted test **Not run**, not Passed.
