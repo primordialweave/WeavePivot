@@ -12,7 +12,7 @@ Existing: product vision, PRD, feature matrix, design system, island spec, inter
 ### M0 — Decisions and reproducible baseline
 - Confirm target macOS, Xcode version, distribution, bundle ID and signing.
 - Initialize native app shell, SwiftFormat/SwiftLint policy if chosen, tests and CI.
-- Create docs/decisions/DECISIONS.md with ADR template.
+- Review existing docs/decisions/DECISIONS.md and resolve milestone-critical open ADRs.
 **Exit:** reproducible local build on a Mac and one passing smoke test.
 
 ### M1 — Feasibility spikes (before polishing)
@@ -114,3 +114,6 @@ M0 may include provisional deployment target for a disposable PoC; production ta
 
 ### Effort disclaimer
 Developer-day estimates are rough planning assumptions, not commitments. Re-estimate after hardware feasibility results and account for localization, QA, signing, notarization and distribution.
+
+## 13. V1.2 execution contract and corrected prerequisites
+Use [EXECUTION_CHECKLIST.md](EXECUTION_CHECKLIST.md) for milestone inputs, outputs, evidence and gate checks, and [REPOSITORY_STRUCTURE.md](REPOSITORY_STRUCTURE.md) for file placement. `DECISIONS.md` already exists; M0 must **review and resolve relevant open ADRs**, not create that document anew. M0 establishes a provisional target for a runnable PoC; final release choices are frozen after feasibility work. Never treat a written milestone as completed without test evidence.
