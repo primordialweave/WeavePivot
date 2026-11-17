@@ -51,3 +51,6 @@ If a conflict remains, **stop the affected task**, quote conflicting sections an
 
 ## Mandatory task report
 Every implementation PR must list requirement IDs, changed files, public APIs, permissions, actual build/test commands and results, hardware/OS where tested, accessibility checks, data-handling effects, known limitations and rollback. Unexecuted tests are Not run.
+
+## V1.2 mandatory execution references
+Before scaffolding, read `docs/engineering/REPOSITORY_STRUCTURE.md`. Before UI/asset work, read `docs/design/ASSET_INVENTORY.md`. For milestone tasks, read `docs/engineering/EXECUTION_CHECKLIST.md`. Do not invent directories, asset approvals, tests or build results. PoC experiments remain in `poc/` until reviewed for promotion into production modules.
