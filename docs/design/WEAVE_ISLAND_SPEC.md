@@ -1,4 +1,4 @@
-# Weave Island — Engineering Interaction Specification V1.0
+# Weave Island — Engineering Interaction Specification V1.1
 > Product: WeavePivot / 织枢. Status: proposed until notch-window PoC passes.
 
 ## 1. Goal and boundaries
@@ -33,7 +33,7 @@ Use AppKit NSPanel/NSWindow with SwiftUI content. Prototype nonactivating panel 
 - Completion: transient success then retract; accessible announcement not repeated.
 
 ## 6. Initial geometry and timing hypotheses
-Compact width ~420pt, height ~44pt; expanded width ~520pt, content height 92–280pt; actual size computed from content and safe geometry. Hover 150ms, expand 220–280ms, collapse 180ms. These values are **design hypotheses**, not confirmed hardware constraints. Avoid expanding over system menu extras; use separate overlay fallback when needed.
+Compact width ~420pt, height ~44pt; expanded width ~520pt, content height 92–280pt; actual size computed from content and safe geometry. Use canonical motion tokens from DESIGN_SYSTEM: hoverWake 150ms, compactExpand 220ms, fullExpand 280ms, collapse 180ms, completionHold 600ms; all are provisional until device testing. These values are **design hypotheses**, not confirmed hardware constraints. Avoid expanding over system menu extras; use separate overlay fallback when needed.
 
 ## 7. Compatibility and permissions
 Notch/no-notch MacBook, external displays, mixed DPI, multiple menu bars, auto-hide menu bar, full-screen apps, Spaces, Stage Manager, screen recording permission denied, Accessibility permission denied, Reduce Motion and Reduce Transparency. The island itself must not require Screen Recording permission simply to display.
@@ -51,3 +51,30 @@ If notch alignment is uncertain, render floating capsule rather than cover the m
 
 ## 10. Implementation outline
 IslandWindowCoordinator (screen and lifecycle); IslandStateMachine (pure state transitions); IslandView (SwiftUI); IslandDragController; IslandTaskPresenter; IslandAccessibilityAdapter. Unit test state transitions independent of window rendering. Do not implement all logic inside a single View.
+
+## 11. V1.1 deterministic transition contract
+Task state and visible Island state are **independent**. Processing may continue while Island is dormant. Model user-facing state as `presentationState`, with separate `activeTasks`, `dragSession`, `hasKeyboardFocus`, and `displayID`.
+
+| Current | Event | Next | Rule |
+|---|---|---|---|
+| dormant | pointerEnter | awake | debounce; never steal focus |
+| awake | pointerExit | dormant | unless drag target/explicit panel |
+| dormant/awake | shortcut | compact | explicit action |
+| compact | expandClick | expanded | restore logical focus |
+| compact/expanded | Escape | dormant | hide panel; **do not cancel task** |
+| expanded | dragEnter(valid) | expanded | enable drop target; suppress timeout |
+| expanded | dragExit | expanded | clear highlight; timeout may resume |
+| any | taskStarted | unchanged | update badge; only explicit user action expands |
+| compact/expanded | taskCompleted | result | show transient result when visible |
+| dormant/awake | taskCompleted | unchanged | passive badge; no focus steal |
+| result | completionHoldExpired | dormant | unless pointer/focus/drag present |
+| any | taskFailed | error only if visible | persist error in task history |
+| any | screenChanged | same logical state | recompute placement; fallback if unsafe |
+
+**Event priority:** permission/security interruption > active drag > explicit user interaction > task result > passive hover > timeout. Ignore stale timer callbacks by transition generation ID. Escape first closes a child dialog/preview, then Island panel. Task cancellation is a separate labeled action. Outside-click dismissal must never delete or cancel material.
+
+## 12. Geometry and hit testing
+`NSScreen.frame`, `visibleFrame`, `safeAreaInsets`, backing scale and screen-to-window coordinate transforms must be evaluated per display. Initial compact target 420×44 pt, expanded width 520 pt and height content-driven 92–280 pt, **not hard constraints**. Clamp to safe width; reposition or use detached capsule if menu extras overlap. The physical notch cannot be painted over or resized by the app. Do not infer notch geometry solely from screenshot pixel color.
+
+## 13. PoC and implementation acceptance
+Create isolated window PoC with manual test log per screen configuration. Validate hover/click/drag/focus/fullscreen/Spaces/auto-hide menu bar/external monitor/sleep-wake/VoiceOver. A failing notch-integrated mode triggers explicit ADR fallback, not silent disabling of the feature. Snapshot comparisons are supplemental; real interaction and OS constraints determine pass/fail.
