@@ -18,7 +18,7 @@ WeavePivotApp (lifecycle, menu bar, settings, launch)
   ├─ UI / Desk (SwiftUI window)
   ├─ UI / Clipboard (SwiftUI panel)
   ├─ UI / Capture (AppKit coordinator + SwiftUI editor)
-  └─ UI / Flow (preset task status)
+  └─ UI / Flow (V0.2+ user-facing presets; V0.1 internal Task Engine only)
              ↓
   Application / Commands / UseCases / StateMachines
              ↓
