@@ -1,4 +1,4 @@
-# WeavePivot Design System V1.0
+# WeavePivot Design System V1.1
 > Status: implementation baseline / pending device validation. 2026-11-17.
 
 ## 1. Principles
@@ -40,7 +40,7 @@ Implement: JadeButton(primary/secondary/quiet/destructive, enabled/disabled/load
 Use SF Symbols by default, stroke-weight consistent with system typography. Custom vector logo only for brand mark, not generic controls. Keep iconography monochrome unless color conveys state. Export approved logos as vector PDF/SVG and 1x/2x/3x PNG where needed.
 
 ## 8. Motion
-Use platform spring/ease curves with interruptible state transitions. Proposed timing: hover wake 120–160ms; compact expand 180–240ms; full expand 240–320ms; collapse 160–220ms; completion 400–650ms then dismiss based on user setting. No idle looping. Respect Reduce Motion with opacity/instant state changes. Do not animate layout during active dragging.
+Use platform spring/ease curves with interruptible state transitions. Motion tokens (canonical): hoverWake 150ms; compactExpand 220ms; fullExpand 280ms; collapse 180ms; completionHold 600ms. The Island Spec must use these tokens; reduce-motion substitutes opacity or immediate transitions. Values are hypotheses until device tests. No idle looping. Respect Reduce Motion with opacity/instant state changes. Do not animate layout during active dragging.
 
 ## 9. Content and localization
 Chinese simplified primary; English supported by localization keys. No text baked into image assets. Short functional labels, no marketing copy in persistent panels. Truncation and RTL readiness reviewed even if RTL is not in MVP.
@@ -50,3 +50,28 @@ Keyboard-only operation, visible focus, VoiceOver reading order, system text sca
 
 ## 11. Source of truth
 Design token definitions in DesignSystem module, Figma or equivalent editable source when available, documented exported reference screenshots. This document overrides decorative concept art. All changes require a dated decision entry.
+
+## 12. V1.1 semantic token contract
+The existing hex values are **light-theme proposals**, not final approved contrast values. Dark appearance must use semantic OS-derived surfaces until a reviewed dark palette is approved. Do not invert light hex codes mechanically.
+
+| Token family | Contract |
+|---|---|
+| color.text.* | System label/secondaryLabel semantics; verify contrast in both appearances |
+| color.surface.* | Native material + opaque fallback when Reduce Transparency |
+| color.jade.* | Accent only; selected/hover/focus states also require shape or label |
+| spacing.* | 4/8/12/16/24/32 pt; no feature-level magic constants |
+| radius.* | 8/12/16/24 pt |
+| motion.hoverWake | 150 ms |
+| motion.compactExpand | 220 ms |
+| motion.fullExpand | 280 ms |
+| motion.collapse | 180 ms |
+| motion.completionHold | 600 ms, configurable |
+| typography.* | System dynamic semantic roles, test localization and scaling |
+
+## 13. Component implementation contract
+Every component exposes a semantic style/state, enabled flag, loading state where applicable, accessible name/hint, focus behavior and reduced-motion alternative. Primary button: single prominent action per panel; destructive requires explicit style and Undo/confirmation. AssetTile: typed preview, title, selection, drag affordance and missing-source state. SearchField: empty/results/no-results/error; debounced query. PermissionExplainer: why/what/Settings/retry. ProgressRow: determinate/indeterminate/cancellable/error.
+
+Do not require meaningless hover or loading variants for components that cannot enter those states. The component inventory is a **design obligation**, not proof that code already exists.
+
+## 14. Verification and source hierarchy
+Run automated contrast calculations for proposed color pairs, then human review on macOS light/dark/high contrast. Compare approved annotated screen prototypes with running screenshots. Where a design value conflicts with OS safe-area or accessibility, record the exception in DECISIONS rather than force pixel fidelity.
