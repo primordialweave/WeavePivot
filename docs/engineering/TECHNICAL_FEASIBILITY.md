@@ -1,4 +1,4 @@
-# WeavePivot — Technical Feasibility and PoC Plan V1.0
+# WeavePivot — Technical Feasibility and PoC Plan V1.1
 > 2026-11-17 | Status: **not yet tested on hardware**
 
 ## 1. Purpose
@@ -50,3 +50,28 @@ For each PoC: document device, OS, build config, steps, expected/actual behavior
 
 ## 10. Open questions
 Exact target hardware and macOS baseline, sandbox strategy, distribution, user consent/retention policy and whether screenshots must work in full-screen apps. Answer before production code freeze.
+
+## 11. V1.1 reproducible PoC protocol
+For every PoC create a report with: issue ID, exact OS/build/Xcode, Mac model, screen resolution and scale, notch/no-notch, sandbox mode, entitlements, permission state, executable steps, observed result, sanitized evidence, performance baseline, severity, pass/conditional/fail, fallback decision, reviewer and date.
+
+### POC-NOTCH executable sequence
+1. Launch minimal panel with no other features; verify menu bar is unobstructed.
+2. Hover enter/exit ten times; record missed hit regions and accidental activation.
+3. Toggle compact/expanded with mouse and keyboard; verify Esc and outside click.
+4. Start simulated task, close panel, complete task; verify no focus theft and task remains intact.
+5. Enter/leave full-screen and switch Spaces; attach/detach external monitor; toggle menu bar auto-hide.
+6. Repeat on notch-free display; confirm detached capsule fallback.
+7. Turn on VoiceOver/Reduce Motion; repeat keyboard path.
+Pass only when all P0 checks pass or approved conditional fallback is recorded.
+
+### POC-CLIP executable sequence
+Copy text, image, URL and file URL; pause capture; copy again; verify no new records; clear history and inspect managed cache; simulate rapid repeated copies; test application exclusion only where source attribution is demonstrably reliable; measure idle resource usage.
+
+### POC-CAP executable sequence
+Request region screenshot; deny permission, retry after granting, revoke while app runs; test mixed-DPI external displays; Esc cancellation; copy/save/Desk export; validate no wrong-display cropping. OCR is optional and must not block P0 screenshot acceptance.
+
+### POC-DIST executable sequence
+Build both intended sandbox configurations if applicable; test entitlements, security-scoped bookmarks, background behavior, global shortcut, screen recording prompts, signature and notarization. Do not assert Mac App Store compatibility from a Developer ID build alone.
+
+## 12. Platform claims requiring verification
+The physical notch is hardware; only visual adjacency/integration is possible. ScreenCaptureKit, CGWindow and Accessibility APIs have different permission and availability constraints. Do not promise Dock-hover interception or protected-window thumbnails. On macOS, clipboard source attribution and password detection may be unavailable; these remain best-effort and must be disclosed.
