@@ -1,4 +1,4 @@
-# WeavePivot Interaction Specification V1.0
+# WeavePivot Interaction Specification V1.1
 > Cross-feature interaction contract. Applies to Island, Desk, Clipboard, Capture, Flow.
 
 ## 1. Global rules
@@ -20,7 +20,7 @@ User initiates region/window/full-screen capture where supported. Escape cancels
 Asset model includes stable ID, type, creation time, provenance when known, preview metadata, retention policy, file bookmark/reference and processing status. Views: grid/list, category filters, search, multi-select, details, batch action. Empty, loading, unavailable file, corrupted preview and no results are distinct states. Destructive actions require confirmation or Undo.
 
 ## 7. Flow
-V0.1 offers preset sequences only, e.g. screenshot → OCR → copy; each step shows queued/running/success/failure/cancelled. A flow can be retried safely; never repeat destructive steps automatically. V0.3 adds configurable chains. Task engine reports progress without blocking UI.
+V0.1 provides internal single-operation task execution only; user-facing preset sequences (e.g. screenshot → OCR → copy) begin in V0.2. Each task shows queued/running/success/failure/cancelled where surfaced. V0.3 adds configurable chains. Task engine reports progress without blocking UI.
 
 ## 8. Feedback taxonomy
 Success: brief, nonmodal toast; information: inline hint; warning: actionable nonblocking panel; failure: persistent error with Retry/Details; destructive: confirmation or Undo. Notifications only when relevant and permitted. VoiceOver announcements concise and rate-limited.
@@ -36,3 +36,15 @@ Copy text/image/file, capture region, send to Desk, multi-select and drag out, c
 
 ## 12. Decision hierarchy
 Platform safety and permissions > user control > functional clarity > accessibility > performance > visual flourish. Conflicts are documented in docs/decisions before implementation.
+
+## 13. V1.1 event and conflict resolution
+- Escape closes nested modal/preview first, then expanded Island; it does not cancel background tasks.
+- Active drag suppresses auto-collapse; invalid UTTypes show refusal without importing data.
+- Background task completion cannot activate a window or steal focus.
+- Destructive removal acts only on owned cache and metadata; deleting a reference must not delete the external file.
+- Global shortcuts must detect conflicts or provide a configurable alternative.
+- Search, selection and drag operations remain keyboard-operable.
+- Permission denial and revocation are distinct states, with Settings/retry actions where supported.
+
+## 14. Screen state and flow traceability
+Map each interaction to a requirement ID: CORE-01, ISL-01/02, CLIP-01/02/03, CAP-01/02, DESK-01/02, DATA-01, A11Y-01. Each implemented screen must document idle/loading/empty/error/focus/permission-denied states as relevant. A UI prototype is not approved until annotations include actions, keyboard focus and responsive constraints.
