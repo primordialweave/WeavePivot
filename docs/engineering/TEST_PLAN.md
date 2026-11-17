@@ -15,7 +15,7 @@ Record exact macOS version, Xcode build, CPU architecture, Mac model, display sc
 - App freshly installed, upgraded, restarted, relaunched after crash and removed.
 
 ## 3. Test levels
-Unit tests: Island state machine, task cancellation, clipboard deduplication, retention, data models, file-path validation and error mapping. Integration: NSPasteboard, screenshot permission/capture, Vision OCR, asset store, drag/drop and security-scoped bookmarks. UI: state transitions, keyboard navigation, menu bar, multi-display, accessibility. Manual exploratory: Spaces, Mission Control, sleep/wake, Stage Manager and focus behavior.
+Unit tests: Island state machine, task cancellation, clipboard deduplication, retention, data models, file-path validation and error mapping. Integration: NSPasteboard, screenshot permission/capture, asset store, drag/drop and security-scoped bookmarks. Vision OCR is tested only when optional CAP-02 ships. UI: state transitions, keyboard navigation, menu bar, multi-display, accessibility. Manual exploratory: Spaces, Mission Control, sleep/wake, Stage Manager and focus behavior.
 
 ## 4. Detailed cases
 | ID | Priority | Scenario | Expected outcome |
