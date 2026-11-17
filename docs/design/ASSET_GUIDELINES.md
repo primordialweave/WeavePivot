@@ -1,4 +1,4 @@
-# WeavePivot — Asset Guidelines V1.0
+# WeavePivot — Asset Guidelines V1.1
 
 > Date: 2026-11-17 | Status: asset-production specification; not a claim that assets already exist.
 
@@ -54,3 +54,6 @@ Maintain `design/assets/manifest.csv` with ID, path, type, purpose, source, lice
 
 ## 11. Acceptance
 An asset is complete only when the editable master, export, naming, provenance/license, intended usage and visual review are recorded. Missing assets should use native placeholder components, never AI-invented production files.
+
+## 12. V1.1 asset acceptance and provenance
+Asset inventory is a **planned deliverable**, not evidence of generated or approved imagery. Each approved source must have an editable master, license/provenance, theme, intended UI state, dimensions, exported variants and review record. For prototypes, add viewport points, scale factor, annotated safe areas, focus order, reduced-motion alternative and associated requirement IDs. Runtime UI is built from native controls, not a flattened concept image. Prefer a single source of truth for colors and motion in DESIGN_SYSTEM.
